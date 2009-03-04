@@ -1,0 +1,30 @@
+#clicktracker-overlay {
+    position:fixed;
+    background:#000;
+    filter:alpha(opacity=70); opacity : 0.7;
+	z-index:999;
+}
+
+.clicktracker-overlay {
+    position:absolute;
+    background:#000;
+    filter:alpha(opacity=70); opacity : 0.7;
+	z-index:1000;
+}
+
+.clicktracker-loading {
+    position:absolute;
+    background:transparent url(images/loading.gif) no-repeat center center;
+	z-index:1000;
+}
+
+.clicktracker-container {
+	position:absolute;
+	z-index:1000;
+}
+
+.clicktracker-container div {
+    position:absolute;
+    width:20px; height:20px;
+    background:transparent url(images/click.png) no-repeat center center;
+}

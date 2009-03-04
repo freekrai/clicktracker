@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>ClickTracker Demo</title>
+	<link rel="stylesheet" href="../clicktracker/clicktracker.css" type="text/css" charset="utf-8">
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="../clicktracker/clicktracker.js"></script>
+	<script type="text/javascript">
+	$(function() { 
+		// start recording clicks on 2 elements
+	    $('#container').saveClicks();
+		$('#target').saveClicks(); 
+		// display clickmap when link is clicked
+	    $('a#displayClicks').click(function() {
+			// stop recording clicks
+	        $('#container').stopSavingClicks().displayClicks(); 
+			$('#target').stopSavingClicks();
+			// remove clickmap and record clicks again
+	        $('.clicktracker-container').click(function() {
+				$('#container').removeClicks().saveClicks();
+				$('#target').saveClicks();
+				return false; 
+	        });
+	        return false; 
+	    }); 
+		// display clickmap when link is clicked
+	    $('a#displayTargetClicks').click(function() {
+			// stop recording clicks
+			$('#target').stopSavingClicks().displayClicks({overlay:'partial'}); 
+	        $('#container').stopSavingClicks();
+			// remove clickmap and record clicks again
+	        $('.clicktracker-container').click(function() {
+	            $('#target').removeClicks().saveClicks();
+				$('#container').saveClicks();
+				return false; 
+	        });
+	        return false; 
+	    });
+	}); 
+	</script>
+	
+	<style type="text/css" media="screen">
+		body {
+			font:75% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+		}
+		h1, h2, h3, h4, h5, h6, p {
+			padding:5px;
+		}
+		#container {
+			outline:1px solid black;
+			width:960px;
+			margin:10px auto;
+		}
+		#header {
+			height:100px;
+			outline:1px solid black;
+		}
+		#footer {
+			height:100px;
+			float:none; clear:both;
+			outline:1px solid black;
+		}
+		#main {
+			width:70%;
+			float:left;
+			min-height:700px;
+			outline:1px solid black;
+		}
+		#sidebar {
+			width:30%;
+			float:left;
+			min-height:700px;
+			outline:1px solid black;
+		}
+		#target {
+			margin:20px;
+		}
+	</style>
+</head>
+
+<body>
+	<p>Display <a id="displayClicks" href="#">clicks on the layout</a> or <a id="displayTargetClicks" href="#">just the clicks on the target</a></p>
+
+	<div id="container">
+		<div id="header">
+			<h1>ClickTracker</h1>
+			<p>By <a href="http://jaysalvat.com" title="Jay Salvat Website">Jay Salvat</a></p>
+		</div>
+		
+		<div id="content">
+			<div id="main">
+				<p><img id="target" src="images/target.gif"></p>
+			</div>
+			<div id="sidebar">
+				<p>Siderbar</p>
+			</div>
+		</div>
+
+		<div id="footer">
+			<p>Footer</p>
+		</div>
+	</div>
+</body>
+</html>
